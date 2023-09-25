@@ -1,13 +1,15 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+// import logo from './logo.svg';
 import './App.css';
+import { Customer } from './components/Customer.js'
+import Customer_Data from './data/data.json'
 
-function App() {
+
+function App() { 
+const[customers, f1] = useState(Customer_Data.data.customer);
   return (
-    <div className="gray-background">
-      <h2>Management system</h2>
-      <img src={logo} alt="logo"/>
-
-
+    <div>
+      { customers.map(c => <Customer key = { c.id } id = { c.id } image={ c.image } name = { c.name } birthday={ c.birthday } gender = { c.gender } job = { c.job }/>)}
     </div>
   );
 }
