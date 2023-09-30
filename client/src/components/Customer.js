@@ -14,6 +14,3 @@ export function Customer(props) {
         </TableRow>
     );
   }
-
-
-

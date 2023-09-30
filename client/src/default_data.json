@@ -1,0 +1,12 @@
+{
+    "customer_data": [
+        {
+            "id":"",
+            "image": "",
+            "name": "",
+            "birthday" : "",
+            "gender" : "",
+            "job" : ""
+        }
+    ]
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import Default_Data from './default_data.json';
 // import logo from './logo.svg';
 import './App.css';
-import { Customer } from './components/Customer.js';
-import Customer_Data from './data/data.json';
+import { Customer } from './components/customer.js';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -10,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
+
 
 // function callApi() {
 //     const response = fetch('/api/customers');
@@ -20,13 +22,15 @@ import Paper from '@mui/material/Paper';
 
 function App() {
   
-  const[customers, f1] = useState([]);
+  const[customers_data, setData] = useState(Default_Data.customer_data);
+
+  const callApi = async () => {
+    const response = await axios.get('/api/customers');
+    setData(response.data.customer_data);
+  }
 
   useEffect(() => {
-    fetch = ('/api/customers')
-      .then((response) => response.json())
-      .then(res => this.setState({customers : res.data}))
-      .catch(err => console.log("err"));   
+    callApi();
   },[]);
 
   return (
@@ -43,7 +47,7 @@ function App() {
           </TableRow>
         </TableHead>
         <TableBody>
-          { customers.map(c => <Customer key = { c.id } id = { c.id } image={ c.image } name = { c.name } birthday={ c.birthday } gender = { c.gender } job = { c.job }/>)}
+          { customers_data.map(c => <Customer key = { c.id } id = { c.id } image={ c.image } name = { c.name } birthday={ c.birthday } gender = { c.gender } job = { c.job }/>)}
         </TableBody>
       </Table>
     </TableContainer>
