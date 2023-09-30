@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { Customer } from './components/Customer.js';
@@ -11,8 +11,24 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 
-function App() { 
-const[customers, f1] = useState(Customer_Data.data.customer);
+// function callApi() {
+//     const response = fetch('/api/customers');
+//     const body = response.json();
+//     console.log(body);    
+//     return body;
+// }
+
+function App() {
+  
+  const[customers, f1] = useState([]);
+
+  useEffect(() => {
+    fetch = ('/api/customers')
+      .then((response) => response.json())
+      .then(res => this.setState({customers : res.data}))
+      .catch(err => console.log("err"));   
+  },[]);
+
   return (
     <TableContainer component={Paper}>
       <Table sx = {{ minWidth: 1080 }} aria-label="Customer_Data_Table">
