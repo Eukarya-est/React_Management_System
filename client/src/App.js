@@ -13,19 +13,18 @@ import { CircularProgress } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
 function App() {
-  //Customer Data
+//Customer Data
   const[customers_data, setData] = useState("");
-  //add-delete post-processing count
+//add-delete post-processing count
   const[resetSwitch, setSwitch] = useState(true);
 
-  //Call Api
+//Call Api
   const callApi = async () => {
     const response = await axios.get('/api/customers');
     setData(response.data);
-    console.log("callApi");
   };
 
-  //ComponenetDidMount & ComponenetDidUpdate
+//ComponenetDidMount & ComponenetDidUpdate
     useEffect(() => {
       callApi();
     },[]);
@@ -34,7 +33,7 @@ function App() {
       callApi();
     },[resetSwitch]);
 
-  //Display
+//Display
   return (
     <div>
       <TableContainer component={Paper}>
