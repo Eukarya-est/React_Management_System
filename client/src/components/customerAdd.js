@@ -54,7 +54,8 @@ export function CustomerAdd(props) {
     formData.append('name', userName.value);
     formData.append('birthday', formBirthday);
     formData.append('gender', gender.value);
-    formData.append('job', job.value);       
+    formData.append('job', job.value);
+    console.log(formData);       
     
     const config = {
         headers: {
@@ -75,7 +76,7 @@ export function CustomerAdd(props) {
     
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleDialogOpen}>
+            <Button variant='contained' color='primary' onClick={handleDialogOpen}>
                 Add Customer
             </Button>
             <Dialog open={openSwitch} onClose={handleDialogClose} >

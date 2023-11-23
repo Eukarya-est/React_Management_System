@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-const useDateInput = (Date) => {
-    const [value, setValue] = useState(Date);
+const useDateInput = (date) => {
+    const [value, setValue] = useState(date);
 
-    const handleChange = (Date) => {
-        setValue(Date);         
+    const handleChange = (date) => {
+        setValue(date);         
     };
 
     return{

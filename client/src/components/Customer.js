@@ -9,10 +9,10 @@ import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography'
 
-
 export function Customer(props) {
     const [deleteSwitch, setSwitch] = useState(false);   
     const createdDate = props.createdDate.replace('T', ' ').substring(0, 19);
+    
 
     const handleDelete = (e) => {
         e.preventDefault();
