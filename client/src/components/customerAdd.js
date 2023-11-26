@@ -40,19 +40,18 @@ export function CustomerAdd(props) {
     
     //Form Submit
     const onSubmit = (data) => {
+        if( data.profileImg[0].size > maxSize ){
+            alert("Image capacity must be less than 2 MB.");
+        } else {
             addCustomer(data);
             resetData(data);
             setSwitch(false);
             props.setSwitch(addPost(props.resetSwitch));
+            }
     };
     //Check And Transfer Customer Data to be Added
     const addCustomer = async (data) => {
     const url = '/api/customers'  
-    
-    if( data.profileImg[0].size > maxSize ){
-        alert("Image capacity must be less than 2 MB.");
-        return;
-    }
 
     //Modify Birthday
     const formBirthday = data.birthday.$d.toISOString().slice(0,4) + data.birthday.$d.toISOString().slice(5,7) + data.birthday.$d.toISOString().slice(8,10);
