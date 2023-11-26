@@ -1,4 +1,5 @@
-const addPost = (resetSwitch) => {
+// Post-processing reset-switching
+const addPost = async (resetSwitch) => {
         if(resetSwitch === true){
             return resetSwitch = false;
         } else {

@@ -18,7 +18,7 @@ function App() {
 //add-delete post-processing switch
   const[resetSwitch, setSwitch] = useState(true);
   const[searchKeyword, setKeyword] = useState("");
-  const cellList = ["Number", "Profile Image", "Name", "Birthday", "Gender", "Job", "Registration Date", "Option"];
+  const cellList = ["#", "PROFILE IMG", "NAME", "BIRTHDAY", "GENDER", "JOB", "REGISTRATION DATE", "OPTION"];
 
 //Call Api
 	const callApi = async () => {
@@ -26,38 +26,42 @@ function App() {
 	setData(response.data);
 	};
 
-//ComponenetDidMount & ComponenetDidUpdate
+//ComponenetDidMount & ComponenetDidUpdate : Depend on resetSwitch
 	useEffect(() => {
 		callApi();
 	},[resetSwitch]);
 
-  	const FilteredComponents = (data) => {
-		data = data.filter((c) =>{
-		return c.name.toLowerCase().indexOf(searchKeyword) > -1 ;
-		});
-		return data.map((c) => {
-			return <Customer key = { c.id } id = { c.id } image={ c.image } name = { c.name } birthday={ c.birthday } gender = { c.gender } job = { c.job } createdDate = {c.createdDate}
-				resetSwitch={resetSwitch} setSwitch={setSwitch}/>
-		});
-  };
+//Filtered(According to the Search Keyword) Components Output Control
+const FilteredComponents = (data) => {
+  data = data.filter((c) =>{
+  return c.name.toLowerCase().indexOf(searchKeyword) > -1 ;
+});
+  return data.map((c) => {
+    return <Customer key = { c.id } id = { c.id } image={ c.image } name = { c.name } birthday={ c.birthday } gender = { c.gender } job = { c.job } createdDate = {c.createdDate}
+      resetSwitch={resetSwitch} setSwitch={setSwitch}/>
+});
+};
 
 //Display
   return (
-    <div> 
+    <div>
+      {/* SearchAppbar */}  
       <SearchAppBar searchKeyword={searchKeyword} setKeyword={setKeyword}/>
-      <div>
-        <CustomerAdd resetSwitch={resetSwitch} setSwitch={setSwitch}/>
-      </div>
-      <TableContainer>
-        <Table sx = {{ minWidth: 1080 }} area-label="Customer_Data_Table">
+      {/* AddCustomer Button */}  
+      <CustomerAdd resetSwitch={resetSwitch} setSwitch={setSwitch}/>
+      {/* Customer Data Table */}  
+      <TableContainer sx={{overflow:'hidden', minWidth: 1080, width: '98%', ml: 2, mr: 2}}>
+        <Table area-label="Customer_Data_Table">
+          {/* Customer Data Categori Name */}
           <TableHead>
             <TableRow>
               {cellList.map(c => {
-                return <TableCell key = {c.toString()}>{c}</TableCell>
+                return <TableCell sx={{ fontWeight:'bold', fontSize:'16px'}} key = {c.toString()}>{c}</TableCell>
               })}
             </TableRow>
           </TableHead>
           <TableBody>
+          {/* Customer Data Contents : components/customer.js */}  
             { customers_data ? FilteredComponents(customers_data) :
               <TableRow>
                 <TableCell colSpan="8" align="center">

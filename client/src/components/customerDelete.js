@@ -1,5 +1,5 @@
 import addPost from './addPost.js';
-
+//Delete Flag:On Request
 const CustomerDelete = (id, resetSwitch) => {
         const url = '/api/customers/' + id;
         let switchstatus = resetSwitch;

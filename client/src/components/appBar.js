@@ -2,13 +2,15 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Logo from './logo192.png';
 
-const Search = styled('div')(({ theme }) => ({
+//Search App Bar
+
+  //Search form style
+  const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -22,7 +24,8 @@ const Search = styled('div')(({ theme }) => ({
       width: 'auto',
     },
   }));
-  
+
+  //Search Icon style
   const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -32,7 +35,8 @@ const Search = styled('div')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'center',
   }));
-  
+
+  //Search Input style
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
@@ -50,31 +54,29 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 
-  
   export function SearchAppBar(props) {
+    //Search Keyword Set
     const searchKeywordchange = (e) => 
-      props.setKeyword(e.target.value);
+    props.setKeyword(e.target.value);
     return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+      <Box sx={{ flexGrow: 1}}>
+        <AppBar position="static" sx={{background : '#222222'}}>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+            {/* Logo */}
+            <Box sx={{mr : 1.6}}>
+            <img src={ Logo } className="App-logo" alt="logo" width="24" height="24"/>
+            </Box>
+            {/* Title */}
             <Typography
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block'} }}
+              fontFamily = '"Black Ops One"'
             >
               Customer Data Management
             </Typography>
+            {/* Search Form */}
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
